@@ -3,6 +3,11 @@ public class Item {
     private String name;
     private int weight;
 
+    public Item (String name, int weight){
+        this.setName(name);
+        this.setWeight(weight);
+    }
+
     public String getName() {
         return name;
     }

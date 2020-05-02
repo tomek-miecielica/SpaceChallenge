@@ -1,11 +1,39 @@
+import java.util.Random;
+
 public class Rocket implements SpaceShip {
 
     private double cost;
     private double weight;
     private double maxWeight;
-    private double chanceOfExplosion;
-    private double chanceOfCrash;
+    private double explosionFactor;
+    private double crashFactor;
 
+
+    public double calculateExplosionRisk(){
+        double calculatedExplosionRisk;
+        calculatedExplosionRisk =
+                this.getExplosionFactor() * calculateWeightToMaxWeightRatio();
+        return calculatedExplosionRisk;
+    }
+
+    public double calculateCrashRisk(){
+        double calculatedCrashRisk;
+        calculatedCrashRisk =
+                this.getCrashFactor() * calculateWeightToMaxWeightRatio();
+        return calculatedCrashRisk;
+    }
+
+    private double calculateWeightToMaxWeightRatio(){
+        double weightToMaxWeightRatio =
+                this.getWeight() / this.getMaxWeight();
+        return weightToMaxWeightRatio;
+    }
+
+    public double generateRandomNumber(){
+        Random rand = new Random();
+        double randomNumber = rand.nextDouble();
+        return randomNumber;
+    }
 
     @Override
     public boolean launch() {
@@ -19,12 +47,17 @@ public class Rocket implements SpaceShip {
 
     @Override
     public boolean canCarry(Item item) {
-        return false;
+        if (item.getWeight() + this.getWeight() <= this.getMaxWeight()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public double carry(Item item) {
-        return 0;
+        this.setWeight(this.weight + item.getWeight());
+        return this.getWeight();
     }
 
     public double getCost() {
@@ -39,12 +72,12 @@ public class Rocket implements SpaceShip {
         return maxWeight;
     }
 
-    public double getChanceOfExplosion() {
-        return chanceOfExplosion;
+    public double getExplosionFactor(){
+        return this.explosionFactor;
     }
 
-    public double getChanceOfCrash() {
-        return chanceOfCrash;
+    public double getCrashFactor() {
+        return crashFactor;
     }
 
     public void setCost(double cost){
@@ -59,11 +92,11 @@ public class Rocket implements SpaceShip {
         this.maxWeight = maxWeight;
     }
 
-    public void setChanceOfExplosion(double chanceOfExplosion) {
-        this.chanceOfExplosion = chanceOfExplosion;
+    public void setExplosionFactor(double explosionFactor){
+        this.explosionFactor = explosionFactor;
     }
 
-    public void setChanceOfCrash(double chanceOfCrash) {
-        this.chanceOfCrash = chanceOfCrash;
+    public void setCrashFactor(double crashFactor) {
+        this.crashFactor = crashFactor;
     }
 }
