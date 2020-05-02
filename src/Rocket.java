@@ -36,29 +36,6 @@ public class Rocket implements SpaceShip {
         return randomNumber;
     }
 
-    public ArrayList<U1> loadU1 (ArrayList<Item> listOfItems){
-        ArrayList<U1> listOfU1RocketsNeeded = new ArrayList<U1>();
-
-        listOfU1RocketsNeeded.add(new U1());
-        U1 lastRocket =
-                listOfU1RocketsNeeded.get(listOfU1RocketsNeeded.size()-1);
-        for (Item item : listOfItems){
-            if (lastRocket.canCarry(item)){
-                lastRocket.carry(item);
-                System.out.println("adding: " + item.getName()+ " waga: " + item.getWeight() + " kg");
-                System.out.println("total weight of rocket: " + listOfU1RocketsNeeded.get(listOfU1RocketsNeeded.size()-1).getWeight()+ " / last rocket: "+lastRocket.getWeight());
-            }else{
-                listOfU1RocketsNeeded.add(new U1());
-                lastRocket =
-                        listOfU1RocketsNeeded.get(listOfU1RocketsNeeded.size()-1);
-                lastRocket.carry(item);
-            }
-        }
-        System.out.println("Items left: " + listOfItems.size());
-        System.out.println("U1 created: " + listOfU1RocketsNeeded.size());
-        return listOfU1RocketsNeeded;
-    }
-
     @Override
     public boolean launch() {
         return true;
