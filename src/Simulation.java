@@ -4,18 +4,7 @@ import java.util.Scanner;
 
 public class Simulation {
 
-    public ArrayList<Item> loadItems (File file) throws Exception{
-        ArrayList<Item> itemList = new ArrayList<Item>();
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String readLine = scanner.nextLine();
-            String[] separatedReadLine = readLine.split("=");
-            String itemName = separatedReadLine[0];
-            int itemWeight = Integer.parseInt(separatedReadLine[1]);
-            itemList.add(new Item(itemName, itemWeight));
-        }
-        return itemList;
-    }
+
     //returns cost of mission in USD mio
     public double calculateBudget(int numOfRockets, double costOfOneRocket){
         double calculatedBudget = numOfRockets * costOfOneRocket;
@@ -80,12 +69,15 @@ public class Simulation {
 
     public static void main(String[] args) throws Exception{
         Simulation simulation = new Simulation();
+        MissionObjects missionObjects = new MissionObjects();
         File file = new File("/home/tom/Documents/SpaceChallenge/src/phase1.txt");
-        simulation.loadItems(file);
-        simulation.loadU2(simulation.loadItems(file));
-        double cost = simulation.runSimulation(simulation.loadU2(simulation.loadItems(file)));
+        missionObjects.loadItems(file, "=");
+        simulation.loadU2(missionObjects.loadItems(file, "="));
+        double cost = simulation.runSimulation(simulation.loadU2(missionObjects.loadItems(file, "=")));
         System.out.println(cost);
     }
 
+//obiektowosc
+    //odpalanie dwoch faz na raz i liczenie dla nich budzetu
 
 }
