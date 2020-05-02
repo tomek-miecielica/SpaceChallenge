@@ -12,7 +12,7 @@ public class Simulation {
             String readLine = scanner.nextLine();
             String[] separatedReadLine = readLine.split("=");
             String itemName = separatedReadLine[0];
-            int itemWeight = Integer.parseInt(separatedReadLine[0]);
+            int itemWeight = Integer.parseInt(separatedReadLine[1]);
             itemList.add(new Item(itemName, itemWeight));
             numberOfItemsToCarry++;
         }
