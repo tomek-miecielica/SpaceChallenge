@@ -3,8 +3,8 @@ public class U1 extends Rocket {
     public U1(){
         this.setExplosionFactor(0.05);
         this.setCrashFactor(0.01);
-        this.setMaxWeight(18);
-        this.setWeight(10);
+        this.setMaxWeight(18000);
+        this.setWeight(10000);
     }
 
 

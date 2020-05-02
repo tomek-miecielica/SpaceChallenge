@@ -14,17 +14,20 @@ public class Simulation {
             String itemName = separatedReadLine[0];
             int itemWeight = Integer.parseInt(separatedReadLine[1]);
             itemList.add(new Item(itemName, itemWeight));
+            //System.out.println("nazwa "+itemList.get(itemList.size()-1).getName()+" waga: "+ itemList.get(itemList.size()-1).getWeight());
             numberOfItemsToCarry++;
         }
         System.out.println(numberOfItemsToCarry);
+        System.out.println (itemList.size());
 
         return itemList;
     }
 
     public static void main(String[] args) throws Exception{
+        Rocket rocket = new Rocket();
         Simulation simulation = new Simulation();
-        File file = new File("/home/tom/Documents/SpaceChallenge/src/phase1.txt");
-        simulation.loadItems(file);
+        File file = new File("/home/tom/Documents/SpaceChallenge/src/phase2.txt");
+        rocket.loadU1(simulation.loadItems(file));
     }
 
 }
