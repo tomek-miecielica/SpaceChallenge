@@ -66,7 +66,6 @@ public class Simulation {
         return listOfU2RocketsNeeded;
     }
 
-
     public static void main(String[] args) throws Exception{
         Simulation simulation = new Simulation();
         MissionObjects missionObjects = new MissionObjects();
@@ -74,12 +73,11 @@ public class Simulation {
         missionObjects.loadItems(file, "=");
         simulation.loadU2(missionObjects.loadItems(file, "="));
         double cost = simulation.runSimulation(simulation.loadU2(missionObjects.loadItems(file, "=")));
-        System.out.println(cost);
+        System.out.println("The cost of sending rockets is : " + cost);
     }
 
-//obiektowosc
+    //obiektowosc
+    //czytanie plikow do array i robienie tego w petli dodac do missionobjects
     //odpalanie dwoch faz na raz i liczenie dla nich budzetu
-    //check, ze przedmiot nie przekracza maksymalnego limitu rakiety
-    //czytanie plikow dodac do missionobjects
 
 }

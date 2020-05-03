@@ -6,6 +6,7 @@ public class Rocket implements SpaceShip {
     private double cost;
     private double weight;
     private double maxWeight;
+    private double initialWeight;
     private double explosionFactor;
     private double crashFactor;
 
@@ -31,9 +32,9 @@ public class Rocket implements SpaceShip {
     }
 
     public void checkIfTheItemIsTransferable (Item item){
-        double maxLoadOfItems = this.getMaxWeight() - this.getWeight();
+        double maxLoadOfItems = this.getMaxWeight() - this.getInitialWeight();
         if (item.getWeight() > maxLoadOfItems){
-            System.out.println ("The item is too heavy to be carried by any rocket of the current type. Yu cannot transfer it.");
+            System.out.println ("The item is too heavy to be carried by any rocket of the current type. You cannot transfer it.");
             System.exit(1);
         }
     }
@@ -90,6 +91,10 @@ public class Rocket implements SpaceShip {
         return crashFactor;
     }
 
+    public double getInitialWeight() {
+        return initialWeight;
+    }
+
     public void setCost(double cost){
         this.cost = cost;
     }
@@ -108,5 +113,9 @@ public class Rocket implements SpaceShip {
 
     public void setCrashFactor(double crashFactor) {
         this.crashFactor = crashFactor;
+    }
+
+    public void setInitialWeight(double initialWeight) {
+        this.initialWeight = initialWeight;
     }
 }

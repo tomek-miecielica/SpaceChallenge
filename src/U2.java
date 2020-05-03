@@ -5,6 +5,7 @@ public class U2 extends Rocket {
         this.setCrashFactor(0.08);
         this.setMaxWeight(29000);
         this.setWeight(18000);
+        this.setInitialWeight(18000);
         this.setCost(120);
     }
 
