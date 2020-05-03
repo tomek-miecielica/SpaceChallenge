@@ -30,6 +30,14 @@ public class Rocket implements SpaceShip {
         return weightToMaxWeightRatio;
     }
 
+    public void checkIfTheItemIsTransferable (Item item){
+        double maxLoadOfItems = this.getMaxWeight() - this.getWeight();
+        if (item.getWeight() > maxLoadOfItems){
+            System.out.println ("The item is too heavy to be carried by any rocket of the current type. Yu cannot transfer it.");
+            System.exit(1);
+        }
+    }
+
     public double generateRandomNumber(){
         Random rand = new Random();
         double randomNumber = rand.nextDouble();

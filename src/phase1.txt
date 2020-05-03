@@ -1,4 +1,4 @@
-building tools=2000
+building tools=20000
 building tools=2000
 building tools=2000
 building tools=5000

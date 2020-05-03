@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class MissionObjects {
 
+    //create an arraylist of items from a file
     public ArrayList<Item> loadItems (File file, String separator) throws Exception{
         MissionObjects objectsNeeded = new MissionObjects();
         ArrayList<Item> itemList = new ArrayList<Item>();

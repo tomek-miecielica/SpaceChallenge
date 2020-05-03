@@ -24,7 +24,7 @@ public class Simulation {
         missionCost = this.calculateBudget(totalNumberOfRocketsUsed, costOfRocket);
         return missionCost;
     }
-
+    //create a list of rockets needed to transport things in array list of Items
     public ArrayList<U1> loadU1 (ArrayList<Item> listOfItems){
         ArrayList<U1> listOfU1RocketsNeeded = new ArrayList<U1>();
 
@@ -32,6 +32,7 @@ public class Simulation {
         U1 lastRocket =
                 listOfU1RocketsNeeded.get(listOfU1RocketsNeeded.size()-1);
         for (Item item : listOfItems){
+            lastRocket.checkIfTheItemIsTransferable(item);
             if (lastRocket.canCarry(item)){
                 lastRocket.carry(item);
             }else{
@@ -41,11 +42,10 @@ public class Simulation {
                 lastRocket.carry(item);
             }
         }
-        System.out.println("Items left: " + listOfItems.size());
-        System.out.println("U1 created: " + listOfU1RocketsNeeded.size());
         return listOfU1RocketsNeeded;
     }
 
+    //create a list of rockets needed to transport things in array list of Items
     public ArrayList<U2> loadU2 (ArrayList<Item> listOfItems){
         ArrayList<U2> listOfU2RocketsNeeded = new ArrayList<U2>();
 
@@ -53,6 +53,7 @@ public class Simulation {
         U2 lastRocket =
                 listOfU2RocketsNeeded.get(listOfU2RocketsNeeded.size()-1);
         for (Item item : listOfItems){
+            lastRocket.checkIfTheItemIsTransferable(item);
             if (lastRocket.canCarry(item)){
                 lastRocket.carry(item);
             }else{
@@ -62,10 +63,9 @@ public class Simulation {
                 lastRocket.carry(item);
             }
         }
-        System.out.println("Items left: " + listOfItems.size());
-        System.out.println("U1 created: " + listOfU2RocketsNeeded.size());
         return listOfU2RocketsNeeded;
     }
+
 
     public static void main(String[] args) throws Exception{
         Simulation simulation = new Simulation();
@@ -79,5 +79,7 @@ public class Simulation {
 
 //obiektowosc
     //odpalanie dwoch faz na raz i liczenie dla nich budzetu
+    //check, ze przedmiot nie przekracza maksymalnego limitu rakiety
+    //czytanie plikow dodac do missionobjects
 
 }
