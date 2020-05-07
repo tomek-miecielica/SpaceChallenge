@@ -11,7 +11,20 @@ public class Simulation {
         return calculatedBudget;
     }
 
-    public double runSimulation (ArrayList<U2> listOfRockets){
+    public double runSimulationU2 (ArrayList<U2> listOfRockets){
+        double missionCost;
+        int numOfBrokenRockets = 0;
+        double costOfRocket = listOfRockets.get(0).getCost();
+        for (Rocket rocket :listOfRockets){
+            while (!rocket.land() || !rocket.launch()){
+                numOfBrokenRockets++;
+            }
+        }
+        int totalNumberOfRocketsUsed = numOfBrokenRockets + listOfRockets.size();
+        missionCost = this.calculateBudget(totalNumberOfRocketsUsed, costOfRocket);
+        return missionCost;
+    }
+    public double runSimulationU1 (ArrayList<U1> listOfRockets){
         double missionCost;
         int numOfBrokenRockets = 0;
         double costOfRocket = listOfRockets.get(0).getCost();
@@ -67,16 +80,27 @@ public class Simulation {
     }
 
     public static void main(String[] args) throws Exception{
-        Simulation simulation = new Simulation();
-        MissionObjects missionObjects = new MissionObjects();
-        File file = new File("/home/tom/Documents/SpaceChallenge/src/phase1.txt");
-        missionObjects.loadItems(file, "=");
-        simulation.loadU2(missionObjects.loadItems(file, "="));
-        double cost = simulation.runSimulation(simulation.loadU2(missionObjects.loadItems(file, "=")));
-        System.out.println("The cost of sending rockets is : " + cost);
+        double costU1 = 0;
+        double costU2 = 0;
+        for (int i = 0; i < 2; i++){
+            Simulation simulation = new Simulation();
+            MissionObjects missionObjects = new MissionObjects();
+            File file = missionObjects.readFilesIntoList()[i];
+            missionObjects.loadItems(file, "=");
+            simulation.loadU2(missionObjects.loadItems(file, "="));
+            simulation.loadU1(missionObjects.loadItems(file, "="));
+            costU1 = costU1 + simulation.runSimulationU1(simulation.loadU1(missionObjects.loadItems(file, "=")));
+            costU2 = costU2 + simulation.runSimulationU2(simulation.loadU2(missionObjects.loadItems(file, "=")));
+        }
+
+        System.out.println("The cost of sending U1 rockets is : " + costU1);
+        System.out.println("The cost of sending U2 rockets is : " + costU2);
+
     }
 
-    //obiektowosc
+    // ww rocket metoda loadRocket ktorej robimy override w U1 oraz U2 podmieniajac tylko typ inputu i outputu
+    // funkcja main jest brzydka, wywalic to do metody
+    //obiektowosc - duplikacja kodu w metodach ktore biora inny parametr (u1, u2) i zwracja inny rezultat (u1,u2)
     //czytanie plikow do array i robienie tego w petli dodac do missionobjects
     //odpalanie dwoch faz na raz i liczenie dla nich budzetu
 

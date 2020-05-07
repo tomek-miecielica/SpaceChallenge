@@ -25,4 +25,11 @@ public class MissionObjects {
         String[] separatedReadLine = readLine.split(separator);
         return separatedReadLine;
     }
+
+    public File[] readFilesIntoList (){
+        File[] fileList =new File[2];
+        fileList[0] = new File("/home/tom/Documents/SpaceChallenge/src/phase1.txt");
+        fileList[1] = new File("/home/tom/Documents/SpaceChallenge/src/phase2.txt");
+        return fileList;
+    }
 }
